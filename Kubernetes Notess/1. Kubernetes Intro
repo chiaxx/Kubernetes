@@ -1,0 +1,49 @@
+Prerequistes:
+- Docker 
+- Containers
+
+• What is Kubernetes?
+kubernetes(k8s)  is a multi-plaform containerization orchestration tool used to scale, deploy, load balance containerized applications 
+
+• Advantages of Kubernetes
+- Automated scheduling
+- Self healing Capabilities
+- Automated Rollout and Rollback
+- Horizontal Scaling and Load Balancing 
+- Service Discovery and Load Balancing
+- Storage Orchestration 
+
+1. Automated scheduling
+- k8s has an advanced scheduler used to launch containers on nodes and this is based on their resource requirements 
+MN: schedules the pods based on what node fits it requirements to run ie: resource limit, requests ..
+
+2. Self healing Capabilities
+- k8s can replace or reschedule containers when a node dies.
+- it also kills containers that doesnt respond to the user-defined health check
+MN: this can be done with replicas [controller managers]
+
+3. Automated Rollout and Rollback
+- k8s rolls out changes to an application or its configuration while monitoring application health to ensure all your applications arent down at the same time
+- if something goes wrong with your application, you can easily rollback the change.
+ie : no downtime 
+
+4.  Horizontal Scaling and Load Balancing 
+- k8s can scale up and scale down applications as per requirements with a simple command, using UI, or automically based on CPU Usage 
+MN: ie: for hs if you have 8gb and you want to scale up you can add 10gb -> 18gb [not sure of this info tho, refering to hs ebs volumes in aws]
+
+5. Service Discovery and Load Balancing
+- k8s automically assign ip addresses to containers [ie: a pod with multiple container[sidecar] share the same ip add, networking...]
+- k8s assigns a single domain name service(DNS) for a set of containers with that they can load balance traffic inside the cluster.
+
+6. Storage Orchestration 
+- k8s can mount any storage system of your choice
+[local storage | public cloud provide storage (EBS in aws)shared network storage system (NFS, iSCSI) ]
+ie: aws has 3 type of storage: file (NFS), object(S3) and block storage (EBS)
+MN: i think you could possible mount this type of storage [not sure tho]
+
+
+
+
+
+
+

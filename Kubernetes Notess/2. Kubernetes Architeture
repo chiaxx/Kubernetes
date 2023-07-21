@@ -1,0 +1,108 @@
+• Kubernetes Architecture
+- K8S consists of two main components
+Control Plane (Master node)            |       Data plane (Worker Node) 
+
+====================================================================================================================================================
+Kubernetes Components: 
+Web UI (Dashboard)
+- Dashboard is a web-based Kubernetes user interface.
+- You can use Dashboard to deploy containerized applications to a k8s cluster, troubleshoot your containerized application,
+and manage the cluster itself along with its available resources.
+[ie: Rancher ]
+
+Kubectl
+- Kubectl is a command line configuration tool (CLI) for Kubernetes used to interact with master node of kubernetes.
+- Kubectl has a config file called kubeconfig, this file has the information about server and authentication information to access the API Server.
+MN: kubectl like the fox sprits to the god of book in ATLA 
+
+======================================================================================================================================================
+Master node:
+- The master node is responsible for the management of the k8s cluster. 
+- it is mainly the entry point for all adminstrative tasks
+- it handles/ manages the worker nodes
+- In a master node we can have this components [apiServer, scheduler, controllerManager, etcd, and CCM ]
+MN: kubelet and kube-proxy can be in a master node, BUT this setup is NOT ideal in a production- grade cluster
+IN: There can be more than one master node in a cluster to check for fault tolerance 
+MN: fault tolarance cluster and no downtime if one of your master cluster goes down
+
+Master Components: this takes care of communication, scheduling and controllers
+
+API Server
+MN: the brain of the cluster [every component on the cluster communicates with the api server]
+- aka kube api server and it interacts with k8s api. it is the front end of k8s [for communication]
+Scheduler: 
+- scheduler watches the pods and assign pod to run on a specific hosts
+
+Controller Manager: [look at the controller manager folder for each controller and their commands]
+- Controller manager runs the controllers in the background of the cluster and each controller runs a different tasks in the k8s cluster
+- it performs cluster level functions such as repliction, keeping track of the worker nodes, and handling node failures
+1. Node Controller 
+- it is responsible for noticing and responding when nodes go down[nodes go down]
+2. Replication Controller
+- maintains the number of pods and controls how many copies of a pod should be runnnig on the cluster[correct number of pods]
+3. Endpoint Controller
+- joins the services and pods together. [populates]
+4. Replicaset Controller
+- ensure number of replication of pods are running at all time.
+5. Deployment Controller
+- provides declarative updates for pods and replicasets
+6. Daemonsets Controller
+- ensures all nodes run a copy of a specific pods
+7. Jobs Controller
+- it acts as a supervisor process for pods carrying out batch jobs 
+
+etcd:
+- it is a simple distribute key value store
+- k8s uses etcd as its database to store all cluster datas
+- datas: [job scheduling, pods, state information..etc]
+MN: it stores all the data of the cluster in key value pairs 
+
+CCM: Cloud controller manager 
+- lets you link your cluster into your cloud provider's API, and separates out the components that interact with that cloud platform from components that just interact with your cluster.
+
+
+Worker Node:
+- worker nodes are where applications are running in the k8s cluster
+- these worker nodes are controlled by the master node using kubelet process
+- a container platform must be running on each worker nodes [ie : we need a container runtime]
+- In a worker node we can have this components [kublet, kube-proxy, and container-runtime | pods, nodes, container networking]
+MN: in a pod, we can have multiple containers and in other to run this containers we need a container platform like 
+docker, rocket, containerd.[people mainly use containerd (depends on the company)]
+
+Kubelet[agent]:
+IN - Each node contains a kubelet
+- kubelet is the small application that can communicate with the k8s control plane. 
+- kubelet is responsible for ensuring that containers specified in pod configuration are running on a specific node, and manages their lifecycle.
+- It executes the actions commanded by your control plane.
+- it ensure that containers are running and healthy 
+IN - kubelet doesnt manage container which were not created by k8s
+MN: communicates with the apiserver and creates pods
+
+
+Kube-proxy[network proxy]:
+-  it is a network proxy that runs on each node in your cluster [iptables]
+- it maintains network rules on nodes
+- in short, these #work rules allow #work communication to your pods from #work sessions inside or outside your cluster.
+-  kube-proxy enablesthe Kubernetes service abstraction by maintaining network rules on the host and performing connection forwarding.
+- kube-proxy maintains network rules on nodes. These network rules allow network communication to your Podsfrom inside or outside of your cluster.
+- It helps us to have network proxy and load balancer for the services in a single worker node.
+- Service is just a logical concept, the real work is being done by the “kube-proxy” pod that is running on each node.
+- It redirect requests from Cluster IP(Virtual IP Address) to Pod IP.
+
+Container Runtime:
+- it is the underlying software where we run all these k8s components 
+- Each node must have a container runtime, such as Docker, container-d and rkt, or another container runtime to process instructionsfrom the master server to run
+containers.
+containerd ->
+- CRI -> container registry interface
+- CNI -> container network interface
+- CSI -> container storage interface
+
+
+
+
+===================================================================================================================================================
+IN: Important Note 
+MN: My note (take with a grain of salt, i am writing this off rip :D)
+# = net work
+
