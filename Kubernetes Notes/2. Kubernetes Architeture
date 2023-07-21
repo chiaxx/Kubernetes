@@ -56,6 +56,7 @@ etcd:
 - k8s uses etcd as its database to store all cluster datas
 - datas: [job scheduling, pods, state information..etc]
 MN: it stores all the data of the cluster in key value pairs 
+IN: etcd is a NOSQL database that stores key value of the k8s cluster
 
 CCM: Cloud controller manager 
 - lets you link your cluster into your cloud provider's API, and separates out the components that interact with that cloud platform from components that just interact with your cluster.
