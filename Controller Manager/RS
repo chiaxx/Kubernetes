@@ -1,0 +1,9 @@
+kubernetes resources/objects used to deploy application: 
+    controllerManagers:
+    Replication Controller
+    ReplicaSet
+    DaemonSet
+    StatefulSets
+    Deployment
+    Volume
+    Job  
