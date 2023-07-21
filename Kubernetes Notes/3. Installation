@@ -1,6 +1,59 @@
 There are multiple ways to install kubernetes on local or CSP 
+1. Local K8S cluster (single node k8s cluster)
+2. Multi-node k8s cluster
+ - Self Managed k8s cluster
+ - Managed k8s cluster
+ - kops
+ - rancher
 
-local K8S Cluster(self managed cluster)
+1. Local K8S cluster (single node k8s cluster)
+
+minikube - https://minikube.sigs.k8s.io/docs/start/
+- choco install minikube [windows]
+- brew install minikube [macOs]
+
+kind - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+- brew install kind
+- choco install kind
+
+Docker Desktop -  https://docs.docker.com/desktop/kubernetes/
+
+
+Multi-node k8s cluster:
+1. Self Managed k8s cluster
+kubeadm - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+    kubeadm --> We can setup multi node k8's cluster using kubeadm.
+    kubespray --> We can setup multi node k8s cluster using kubespray
+     (Ansbile Playbooks Used internally by kubespray).
+
+2. Managed K8s cluster
+EKS - Amazon Elastic Kubernetes Service         - https://eksctl.io/
+[install with ui or eksctl(also managed my aws)]
+GKE - Google Kubernetes Engine
+AKS - Azure Kubernetes Service
+
+
+3. KOPS  - https://kubernetes.io/docs/setup/production-environment/tools/kops/
+- kops is a software use to create production GRADE/ready k8s in AWS and azure for the kops beta version  
+-  highly available kubernetes services in Cloud like AWS.
+- KOPS will leverage Cloud Sevices like: [vpc, AutoScaling Groups, LoadBalancer, Launch Template/configuration, ec2-instances nodes [workerNodes and masterNodes] 
+- No, Kops is not a self-managed cluster. It is a tool for creating and managing Kubernetes clusters.
+kops - https://kubernetes.io/docs/setup/production-environment/tools/kops/
+MN: [kubectl and awcli must be installed]
+
+
+
+4. rancher
+- Using Rancher we can deploy both managed and self managed k8s
+- Rancher serves as a glass to access and manage multiple k8s from the dashboard [UI]  -> rancher dashboard 
+
+
+
+
+
+
+FIRST BEGINNER INSTALLATION: 
+
 kubeadm - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 ---
 #!/bin/bash
@@ -27,25 +80,6 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 ---
-minikube - https://minikube.sigs.k8s.io/docs/start/
-- choco install minikube [windows]
-- brew install minikube [macOs]
-
-kind - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
-- brew install kind
-- choco install kind
-
-Docker Desktop -  https://docs.docker.com/desktop/kubernetes/
-
-Managed K8s cluster
-EKS - Amazon Elastic Kubernetes Service         - https://eksctl.io/
-[install with ui or eksctl(also managed my aws)]
-GKE - Google Kubernetes Engine
-AKS - Azure Kubernetes Service
-
-[personal favourite] -> No, Kops is not a self-managed cluster. It is a tool for creating and managing Kubernetes clusters.
-kops - https://kubernetes.io/docs/setup/production-environment/tools/kops/
-[kubectl and awcli must be installed]
 
 IN:
 authentication via kubeconfig 
