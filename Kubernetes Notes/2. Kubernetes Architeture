@@ -33,7 +33,7 @@ MN: the brain of the cluster [every component on the cluster communicates with t
 Scheduler: 
 - scheduler watches the pods and assign pod to run on a specific hosts
 
-Controller Manager: [look at the controller manager folder for each controller and their commands]
+Controller Manager: [look at the controller manager folder for each controller and their commands] https://github.com/chiaxx/Kubernetes/tree/main/Controller%20Manager
 - Controller manager runs the controllers in the background of the cluster and each controller runs a different tasks in the k8s cluster
 - it performs cluster level functions such as repliction, keeping track of the worker nodes, and handling node failures
 1. Node Controller 
