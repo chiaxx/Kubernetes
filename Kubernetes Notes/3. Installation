@@ -1,1 +1,52 @@
+There are multiple ways to install kubernetes on local or CSP 
 
+local K8S Cluster(self managed cluster)
+kubeadm - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+---
+#!/bin/bash
+
+# Update package lists
+sudo apt-get update
+
+# Install necessary dependencies
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+# Add Kubernetes signing key
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
+# Add Kubernetes repository
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+# Update package lists again with the new repository
+sudo apt-get update
+
+# Install Kubeadm, Kubelet, and Kubectl
+sudo apt-get install -y kubelet kubeadm kubectl
+
+# Prevent automatic updates of Kubernetes packages
+sudo apt-mark hold kubelet kubeadm kubectl
+
+---
+minikube - https://minikube.sigs.k8s.io/docs/start/
+- choco install minikube [windows]
+- brew install minikube [macOs]
+
+kind - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+- brew install kind
+- choco install kind
+
+Docker Desktop -  https://docs.docker.com/desktop/kubernetes/
+
+Managed K8s cluster
+EKS - Amazon Elastic Kubernetes Service         - https://eksctl.io/
+[install with ui or eksctl(also managed my aws)]
+GKE - Google Kubernetes Engine
+AKS - Azure Kubernetes Service
+
+[personal favourite] -> No, Kops is not a self-managed cluster. It is a tool for creating and managing Kubernetes clusters.
+kops - https://kubernetes.io/docs/setup/production-environment/tools/kops/
+[kubectl and awcli must be installed]
+
+IN:
+authentication via kubeconfig 
+authorisation via RBAC
