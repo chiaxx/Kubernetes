@@ -1,0 +1,40 @@
+DaemonSet 
+- make sure that all or some k8s nodes run a copy of a pod
+- when a new node is added to the cluster, a pod is added to it to match the rest of the nodes when a node is removed from the cluster, the Pod is garbage collected.
+
+Some typical uses of a DaemonSet are:
+- running a cluster storage daemon on every node
+- running a logs collection daemon on every node
+- running a node monitoring daemon on every node
+
+In a simple case, one DaemonSet, covering all nodes, would be used for each type of daemon. A more complex setup might use multiple DaemonSets for a single type of daemon, but with different flags and/or different memory and cpu requests for different hardware types
+
+
+
+============================================================================================================================
+COMMANDS 
+==========================================================================================================================
+Check kubectl api-resource to check for shortcut
+DaemonSet ->  ds
+
+Create a new daemonset
+kubectl create daemonset <daemonset_name> | kubectl create ds <daemonset_name>
+
+List one or more daemonsets
+kubectl get daemonset | kubectl get ds
+ 
+
+Edit and update the definition of one or more daemonset
+kubectl edit daemonset <daemonset_name> | kubectl edit ds <daemonset_name> 
+ 
+
+Delete a daemonset
+kubectl delete daemonset <daemonset_name> | kubectl delete ds <daemonset_name> 
+
+ 
+Manage the rollout of a daemonset
+kubectl rollout daemonset | kubectl rollout ds
+
+
+Display the detailed state of daemonsets within a namespace
+kubectl describe ds <daemonset_name> -n <namespace_name>

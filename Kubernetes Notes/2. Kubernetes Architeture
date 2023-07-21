@@ -91,7 +91,7 @@ Kube-proxy[network proxy]:
 
 Container Runtime:
 - it is the underlying software where we run all these k8s components 
-- Each node must have a container runtime, such as Docker, container-d and rkt, or another container runtime to process instructionsfrom the master server to run
+- Each node must have a container runtime, such as Docker, container-d, cri-o and rkt, or another container runtime to process instructionsfrom the master server to run
 containers.
 containerd ->
 - CRI -> container registry interface

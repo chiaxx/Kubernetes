@@ -1,0 +1,82 @@
+
+• ReplicaSet is the next-generation Replication Controller.
+• The only difference between a ReplicaSet and a Replication Controller right now is the selector support.
+• ReplicaSet supports the new set-based selector requirements as described in the labels user guide whereas a Replication Controller only supports equality-based selector requirements
+
+
+
+
+RC --> Supports only equality based selectors.
+key == value(Equal Condition)
+selector:
+    app: javawebapp
+    tier: fe    
+    client: tesla  
+
+RS --> Supports eqaulity based selectors and also set based selectors.  
+eqaulity based:
+key == value(Equal Condition)  
+set based:
+  key in [ value1, value2, value3 ]
+selector:
+   matchLabels:   -# Equality Based
+     key: value
+    app: javawebapp
+    tier: fe    
+    client: tesla  
+   matchExpressions: -# Set Based
+   - key: app
+     operator: in
+     values:
+     - javawebpp
+     - myapp  
+     - fe  
+
+
+COMMANDS
+===============================
+List ReplicaSets 
+kubectl get replicasets | kubectl get rs
+ 
+
+Display the detailed state of one or more ReplicaSets
+kubectl describe replicasets <replicaset_name> | kubectl describe res <replicaset_name>
+ 
+
+Scale a ReplicaSet
+kubectl scale --replicas=[x]  
+
+
+
+
+
+
+simple rs.yml 
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-rs-pod
+    matchExpressions:
+      - key: env
+        operator: In
+        values:
+          - dev
+  template:
+    metadata:
+      labels:
+        app: nginx-rs-pod
+        env: dev
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+---
