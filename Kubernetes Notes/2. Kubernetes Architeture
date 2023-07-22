@@ -76,6 +76,7 @@ IN - Each node contains a kubelet
 - kubelet is responsible for ensuring that containers specified in pod configuration are running on a specific node, and manages their lifecycle.
 - It executes the actions commanded by your control plane.
 - it ensure that containers are running and healthy 
+IN: kubelet creates and starts containers
 IN - kubelet doesnt manage container which were not created by k8s
 MN: communicates with the apiserver and creates pods
 
