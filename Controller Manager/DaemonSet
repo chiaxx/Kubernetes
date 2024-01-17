@@ -1,4 +1,4 @@
-DaemonSet 
+DaemonSet.
 - make sure that all or some k8s nodes run a copy of a pod
 - when a new node is added to the cluster, a pod is added to it to match the rest of the nodes when a node is removed from the cluster, the Pod is garbage collected.
 
